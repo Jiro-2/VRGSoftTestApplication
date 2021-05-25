@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		648CC83EBB6967789731D226 /* Pods_VRGSoftTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D63C67711A04FA93979B18 /* Pods_VRGSoftTestApp.framework */; };
 		741A6FFE265D00030000D45C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A6FFD265D00030000D45C /* AppDelegate.swift */; };
 		741A7000265D00030000D45C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A6FFF265D00030000D45C /* SceneDelegate.swift */; };
 		741A7008265D00030000D45C /* VRGSoftTestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 741A7006265D00030000D45C /* VRGSoftTestApp.xcdatamodeld */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		066676645EF32F5189FC3AA4 /* Pods-VRGSoftTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTestApp.release.xcconfig"; path = "Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp.release.xcconfig"; sourceTree = "<group>"; };
 		741A6FFA265D00030000D45C /* VRGSoftTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VRGSoftTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741A6FFD265D00030000D45C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		741A6FFF265D00030000D45C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +44,8 @@
 		746F3138265D128600062540 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		746F313F265D1A8800062540 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		746F3142265D1D9900062540 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		89247188427B17F6DD68CAD3 /* Pods-VRGSoftTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTestApp.debug.xcconfig"; path = "Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		94D63C67711A04FA93979B18 /* Pods_VRGSoftTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VRGSoftTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648CC83EBB6967789731D226 /* Pods_VRGSoftTestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +68,8 @@
 				741A7017265D020E0000D45C /* Resources */,
 				741A7018265D021C0000D45C /* Supporting Files */,
 				741A6FFB265D00030000D45C /* Products */,
+				7A97B8DC785F65F245CDC2A5 /* Pods */,
+				82279F489B8288C16D44BBB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,17 +84,11 @@
 		741A6FFC265D00030000D45C /* VRGSoftTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				7457A438265D715500BA5208 /* Model */,
 				74575DBE265D256100A898CD /* View */,
-				746F3137265D124A00062540 /* Coordinator */,
+				7457A437265D710700BA5208 /* Controllers */,
 				741A7006265D00030000D45C /* VRGSoftTestApp.xcdatamodeld */,
 				741A700E265D00080000D45C /* Info.plist */,
-				741A7024265D0B590000D45C /* MainTabBarController.swift */,
-				741A701E265D0ACB0000D45C /* MostViewedNewsViewController.swift */,
-				741A701B265D0A670000D45C /* MostEmailedNewsViewController.swift */,
-				741A7021265D0B070000D45C /* MostSharedNewsViewController.swift */,
-				74575DC6265D508B00A898CD /* FavoritesNewsViewController.swift */,
-				746F3142265D1D9900062540 /* DetailViewController.swift */,
-				746F313F265D1A8800062540 /* ScreenFactory.swift */,
 			);
 			path = VRGSoftTestApp;
 			sourceTree = "<group>";
@@ -126,12 +127,52 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7457A437265D710700BA5208 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				741A7024265D0B590000D45C /* MainTabBarController.swift */,
+				741A701E265D0ACB0000D45C /* MostViewedNewsViewController.swift */,
+				741A701B265D0A670000D45C /* MostEmailedNewsViewController.swift */,
+				741A7021265D0B070000D45C /* MostSharedNewsViewController.swift */,
+				74575DC6265D508B00A898CD /* FavoritesNewsViewController.swift */,
+				746F3142265D1D9900062540 /* DetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7457A438265D715500BA5208 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				746F313F265D1A8800062540 /* ScreenFactory.swift */,
+				746F3137265D124A00062540 /* Coordinator */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		746F3137265D124A00062540 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
 				746F3138265D128600062540 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		7A97B8DC785F65F245CDC2A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89247188427B17F6DD68CAD3 /* Pods-VRGSoftTestApp.debug.xcconfig */,
+				066676645EF32F5189FC3AA4 /* Pods-VRGSoftTestApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		82279F489B8288C16D44BBB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94D63C67711A04FA93979B18 /* Pods_VRGSoftTestApp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +182,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 741A7011265D00080000D45C /* Build configuration list for PBXNativeTarget "VRGSoftTestApp" */;
 			buildPhases = (
+				DF0E3E51D065435DAD919471 /* [CP] Check Pods Manifest.lock */,
 				741A6FF6265D00030000D45C /* Sources */,
 				741A6FF7265D00030000D45C /* Frameworks */,
 				741A6FF8265D00030000D45C /* Resources */,
+				8A4BDFDC53B47B07F09303C4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +240,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A4BDFDC53B47B07F09303C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF0E3E51D065435DAD919471 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VRGSoftTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		741A6FF6265D00030000D45C /* Sources */ = {
@@ -351,6 +436,7 @@
 		};
 		741A7012265D00080000D45C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89247188427B17F6DD68CAD3 /* Pods-VRGSoftTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -369,6 +455,7 @@
 		};
 		741A7013265D00080000D45C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 066676645EF32F5189FC3AA4 /* Pods-VRGSoftTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
