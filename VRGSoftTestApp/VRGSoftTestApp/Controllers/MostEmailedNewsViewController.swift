@@ -3,6 +3,8 @@ import UIKit
 final class MostEmailedNewsViewController: UIViewController {
     
     var coordinator: AppCoordinator?
+    private let networkManager: NetworkManagerProtocol
+    private var emailedArticles = [Article]()
     
     //MARK: - Subview
     
@@ -21,11 +23,12 @@ final class MostEmailedNewsViewController: UIViewController {
     
     //MARK: - Init -
     
-    init() {
-        
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem.image = UIImage(systemName: "envelope.fill")
-        self.tabBarItem.title = "Most Emailed"
+        tabBarItem.image = UIImage(systemName: "envelope.fill")
+        tabBarItem.title = "Most Emailed"
+        tabBarItem.tag = 2
     }
     
     
@@ -38,7 +41,18 @@ final class MostEmailedNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        networkManager.getNews(in: .emailed, over: .month) { response in
+            
+            guard let articles = response?.results else { return }
+            self.emailedArticles = articles
+            
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+            }
+        }
+        
         view.backgroundColor = .blue
         setupLayout()
     }
@@ -64,12 +78,19 @@ final class MostEmailedNewsViewController: UIViewController {
 extension MostEmailedNewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        emailedArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        UITableViewCell()
+        NewsTableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let newsCell = cell as? NewsTableViewCell else { return }
+        newsCell.titleLabel.text = emailedArticles[indexPath.row].title
+        newsCell.summaryArticleLabel.text = emailedArticles[indexPath.row].abstract
     }
 }
 

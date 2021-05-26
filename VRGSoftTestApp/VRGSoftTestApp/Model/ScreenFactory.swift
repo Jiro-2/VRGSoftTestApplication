@@ -14,7 +14,9 @@ protocol ScreenFactoryProtocol {
 
 final class ScreenFactory: ScreenFactoryProtocol {
     
-     var coordinator: AppCoordinator?
+    var coordinator: AppCoordinator?
+    let networkManager = NetworkManager()
+    
     
     func makeDetailViewController() -> UIViewController {
         DetailViewController()
@@ -23,7 +25,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMostEmailedViewController() -> UIViewController {
         
-        let vc = MostEmailedNewsViewController()
+        let vc = MostEmailedNewsViewController(networkManager: networkManager)
         vc.coordinator = coordinator
         return vc
     }
@@ -31,7 +33,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMostViewedViewController() -> UIViewController {
         
-        let vc = MostViewedNewsViewController()
+        let vc = MostViewedNewsViewController(networkManager: networkManager)
         vc.coordinator = coordinator
         return vc
     }
@@ -39,7 +41,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMostSharedViewController() -> UIViewController {
         
-        let vc = MostSharedNewsViewController()
+        let vc = MostSharedNewsViewController(networkManager: networkManager)
         vc.coordinator = coordinator
         return vc
     }
@@ -52,7 +54,9 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMainTabBarController() -> UIViewController {
         
-        let tabBarController = MainTabBarController()
+        let networkManager = NetworkManager()
+        
+        let tabBarController = MainTabBarController(networkManager: networkManager)
         tabBarController.viewControllers = [makeMostViewedViewController(),
                                             makeMostSharedViewController(),
                                             makeMostEmailedViewController(),

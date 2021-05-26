@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,8 @@
 		746F3139265D128600062540 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F3138265D128600062540 /* AppCoordinator.swift */; };
 		746F3140265D1A8800062540 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F313F265D1A8800062540 /* ScreenFactory.swift */; };
 		746F3143265D1D9900062540 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F3142265D1D9900062540 /* DetailViewController.swift */; };
+		74F30E8E265D812C003B89C0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F30E8D265D812C003B89C0 /* NetworkManager.swift */; };
+		74F30E92265D931E003B89C0 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F30E91265D931E003B89C0 /* NewsResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		746F3138265D128600062540 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		746F313F265D1A8800062540 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		746F3142265D1D9900062540 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		74F30E8D265D812C003B89C0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		74F30E91265D931E003B89C0 /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
 		89247188427B17F6DD68CAD3 /* Pods-VRGSoftTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTestApp.debug.xcconfig"; path = "Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		94D63C67711A04FA93979B18 /* Pods_VRGSoftTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VRGSoftTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +147,7 @@
 		7457A438265D715500BA5208 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				74F30E8C265D810D003B89C0 /* Networking */,
 				746F313F265D1A8800062540 /* ScreenFactory.swift */,
 				746F3137265D124A00062540 /* Coordinator */,
 			);
@@ -157,13 +162,29 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		74F30E8C265D810D003B89C0 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				74F30E90265D92DD003B89C0 /* APIResponse */,
+				74F30E8D265D812C003B89C0 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		74F30E90265D92DD003B89C0 /* APIResponse */ = {
+			isa = PBXGroup;
+			children = (
+				74F30E91265D931E003B89C0 /* NewsResponse.swift */,
+			);
+			path = APIResponse;
+			sourceTree = "<group>";
+		};
 		7A97B8DC785F65F245CDC2A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				89247188427B17F6DD68CAD3 /* Pods-VRGSoftTestApp.debug.xcconfig */,
 				066676645EF32F5189FC3AA4 /* Pods-VRGSoftTestApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -295,9 +316,11 @@
 				741A6FFE265D00030000D45C /* AppDelegate.swift in Sources */,
 				74575DC7265D508B00A898CD /* FavoritesNewsViewController.swift in Sources */,
 				741A701F265D0ACB0000D45C /* MostViewedNewsViewController.swift in Sources */,
+				74F30E92265D931E003B89C0 /* NewsResponse.swift in Sources */,
 				741A7000265D00030000D45C /* SceneDelegate.swift in Sources */,
 				741A7008265D00030000D45C /* VRGSoftTestApp.xcdatamodeld in Sources */,
 				746F3143265D1D9900062540 /* DetailViewController.swift in Sources */,
+				74F30E8E265D812C003B89C0 /* NetworkManager.swift in Sources */,
 				741A701C265D0A670000D45C /* MostEmailedNewsViewController.swift in Sources */,
 				746F3139265D128600062540 /* AppCoordinator.swift in Sources */,
 				7457A435265D5E5200BA5208 /* FavoriteButton.swift in Sources */,

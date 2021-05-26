@@ -7,8 +7,7 @@ class FavoritesNewsViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem.image = UIImage(systemName: "star.fill")
-        self.tabBarItem.title = "Favorites News"
+        self.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 3)
     }
     
     

@@ -2,9 +2,14 @@ import UIKit
 
 final class MostSharedNewsViewController: UIViewController {
 
-    var coordinator: AppCoordinator?
+    //MARK: - Properties -
     
-    //MARK: - Subview
+    var coordinator: AppCoordinator?
+    private let networkManager: NetworkManagerProtocol
+    private var sharedArticles = [Article]()
+        
+    
+    //MARK: - subview
     
     private lazy var tableView: UITableView = {
       
@@ -23,11 +28,13 @@ final class MostSharedNewsViewController: UIViewController {
     //MARK: - Init -
     
     
-    init() {
-        
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem.image = UIImage(systemName: "doc.on.doc.fill")
-        self.tabBarItem.title = "Most Shared"
+        tabBarItem.image = UIImage(systemName: "hand.thumbsup.fill")
+        tabBarItem.title = "Most Shared"
+        tabBarItem.tag = 1
+    
     }
     
     
@@ -41,6 +48,17 @@ final class MostSharedNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        networkManager.getNews(in: .shared, over: .month) { response in
+            
+            guard let articles = response?.results else { return }
+            self.sharedArticles = articles
+            
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+            }
+        }
+        
         view.backgroundColor = .yellow
         setupLayout()
     }
@@ -59,20 +77,33 @@ final class MostSharedNewsViewController: UIViewController {
     }
 }
 
+
 //MARK: - Extension -
 
 
 extension MostSharedNewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        sharedArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        UITableViewCell()
+        NewsTableViewCell()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let newsCell = cell as? NewsTableViewCell else { return }
+        newsCell.titleLabel.text = sharedArticles[indexPath.row].title
+        newsCell.summaryArticleLabel.text = sharedArticles[indexPath.row].abstract
     }
 }
 
 
-extension MostSharedNewsViewController: UITableViewDelegate {}
+extension MostSharedNewsViewController: UITableViewDelegate {
+    
+    
+    
+}

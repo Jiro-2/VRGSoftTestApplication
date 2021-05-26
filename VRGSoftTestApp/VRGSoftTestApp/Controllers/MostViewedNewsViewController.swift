@@ -3,6 +3,9 @@ import UIKit
 final class MostViewedNewsViewController: UIViewController {
 
      var coordinator: AppCoordinator?
+     private let networkManager: NetworkManagerProtocol
+     private var viewedArticles = [Article]()
+    
 
     //MARK: - Subview
     
@@ -21,11 +24,10 @@ final class MostViewedNewsViewController: UIViewController {
     
     //MARK: - Init -
     
-    init() {
-        
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem.image = UIImage(systemName: "eyeglasses")
-        self.tabBarItem.title = "Most Viewed"
+        self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -38,8 +40,18 @@ final class MostViewedNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
+        networkManager.getNews(in: .viewed, over: .month) { response in
+            
+            guard let articles = response?.results else { return }
+            self.viewedArticles = articles
+                        
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+            }
+        }
         
+        view.backgroundColor = .green
         setupLayout()
     }
     
@@ -65,12 +77,20 @@ final class MostViewedNewsViewController: UIViewController {
 extension MostViewedNewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        viewedArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         NewsTableViewCell()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let newsCell = cell as? NewsTableViewCell else { return }
+        newsCell.titleLabel.text = viewedArticles[indexPath.row].title
+        newsCell.summaryArticleLabel.text = viewedArticles[indexPath.row].abstract
     }
 }
 
