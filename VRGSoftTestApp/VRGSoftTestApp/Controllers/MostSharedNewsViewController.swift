@@ -1,18 +1,26 @@
 import UIKit
 
-final class MostSharedNewsViewController: UIViewController {
 
+protocol MostSharedViewControllerDelegate: class {
+    
+    func viewController(_ viewController: MostSharedNewsViewController, didSelect article: Article)
+}
+
+
+final class MostSharedNewsViewController: UIViewController {
+    
     //MARK: - Properties -
     
     var coordinator: AppCoordinator?
+    var delegate: MostSharedViewControllerDelegate?
     private let networkManager: NetworkManagerProtocol
     private var sharedArticles = [Article]()
-        
+    
     
     //MARK: - subview
     
     private lazy var tableView: UITableView = {
-      
+        
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: "news_cell_id")
@@ -24,7 +32,6 @@ final class MostSharedNewsViewController: UIViewController {
     }()
     
     
-    
     //MARK: - Init -
     
     
@@ -33,8 +40,7 @@ final class MostSharedNewsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         tabBarItem.image = UIImage(systemName: "hand.thumbsup.fill")
         tabBarItem.title = "Most Shared"
-        tabBarItem.tag = 1
-    
+        
     }
     
     
@@ -47,7 +53,7 @@ final class MostSharedNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         networkManager.getNews(in: .shared, over: .month) { response in
             
             guard let articles = response?.results else { return }
@@ -62,6 +68,7 @@ final class MostSharedNewsViewController: UIViewController {
         view.backgroundColor = .yellow
         setupLayout()
     }
+    
     
     //MARK: - Methods -
     
@@ -89,21 +96,28 @@ extension MostSharedNewsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        NewsTableViewCell()
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "news_cell_id") as? NewsTableViewCell
         
-        guard let newsCell = cell as? NewsTableViewCell else { return }
-        newsCell.titleLabel.text = sharedArticles[indexPath.row].title
-        newsCell.summaryArticleLabel.text = sharedArticles[indexPath.row].abstract
+        let imageURL = sharedArticles[indexPath.row].media.first?.metadata.first?.url
+        cell?.imageView?.setImage(withURL: imageURL)
+        
+        cell?.titleLabel.text = sharedArticles[indexPath.row].title
+        cell?.summaryArticleLabel.text = sharedArticles[indexPath.row].abstract
+        
+        return cell ?? UITableViewCell()
     }
 }
 
 
+
 extension MostSharedNewsViewController: UITableViewDelegate {
     
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        coordinator?.showDetails()
+        let lastViewController = coordinator?.navigationController?.viewControllers.last
+        let detailViewController = lastViewController as? MostSharedViewControllerDelegate
+        delegate = detailViewController
+        delegate?.viewController(self, didSelect: sharedArticles[indexPath.row])
+    }
 }

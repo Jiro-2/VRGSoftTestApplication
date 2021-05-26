@@ -13,8 +13,8 @@
 		741A7008265D00030000D45C /* VRGSoftTestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 741A7006265D00030000D45C /* VRGSoftTestApp.xcdatamodeld */; };
 		741A700A265D00080000D45C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741A7009265D00080000D45C /* Assets.xcassets */; };
 		741A700D265D00080000D45C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741A700B265D00080000D45C /* LaunchScreen.storyboard */; };
-		741A701C265D0A670000D45C /* MostEmailedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A701B265D0A670000D45C /* MostEmailedNewsViewController.swift */; };
-		741A701F265D0ACB0000D45C /* MostViewedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A701E265D0ACB0000D45C /* MostViewedNewsViewController.swift */; };
+		741A701C265D0A670000D45C /* MostEmailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A701B265D0A670000D45C /* MostEmailedViewController.swift */; };
+		741A701F265D0ACB0000D45C /* MostViewedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A701E265D0ACB0000D45C /* MostViewedViewController.swift */; };
 		741A7022265D0B070000D45C /* MostSharedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A7021265D0B070000D45C /* MostSharedNewsViewController.swift */; };
 		741A7025265D0B590000D45C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741A7024265D0B590000D45C /* MainTabBarController.swift */; };
 		74575DC0265D25A700A898CD /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74575DBF265D25A700A898CD /* NewsTableViewCell.swift */; };
@@ -23,6 +23,7 @@
 		746F3139265D128600062540 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F3138265D128600062540 /* AppCoordinator.swift */; };
 		746F3140265D1A8800062540 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F313F265D1A8800062540 /* ScreenFactory.swift */; };
 		746F3143265D1D9900062540 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746F3142265D1D9900062540 /* DetailViewController.swift */; };
+		747AF4B5265EC31C0038A302 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747AF4B4265EC31C0038A302 /* UIImageView.swift */; };
 		74F30E8E265D812C003B89C0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F30E8D265D812C003B89C0 /* NetworkManager.swift */; };
 		74F30E92265D931E003B89C0 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F30E91265D931E003B89C0 /* NewsResponse.swift */; };
 /* End PBXBuildFile section */
@@ -36,8 +37,8 @@
 		741A7009265D00080000D45C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		741A700C265D00080000D45C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		741A700E265D00080000D45C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		741A701B265D0A670000D45C /* MostEmailedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostEmailedNewsViewController.swift; sourceTree = "<group>"; };
-		741A701E265D0ACB0000D45C /* MostViewedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostViewedNewsViewController.swift; sourceTree = "<group>"; };
+		741A701B265D0A670000D45C /* MostEmailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostEmailedViewController.swift; sourceTree = "<group>"; };
+		741A701E265D0ACB0000D45C /* MostViewedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostViewedViewController.swift; sourceTree = "<group>"; };
 		741A7021265D0B070000D45C /* MostSharedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedNewsViewController.swift; sourceTree = "<group>"; };
 		741A7024265D0B590000D45C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		74575DBF265D25A700A898CD /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		746F3138265D128600062540 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		746F313F265D1A8800062540 /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
 		746F3142265D1D9900062540 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		747AF4B4265EC31C0038A302 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		74F30E8D265D812C003B89C0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		74F30E91265D931E003B89C0 /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
 		89247188427B17F6DD68CAD3 /* Pods-VRGSoftTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTestApp.debug.xcconfig"; path = "Target Support Files/Pods-VRGSoftTestApp/Pods-VRGSoftTestApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		741A6FFC265D00030000D45C /* VRGSoftTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				747AF4B3265EC2F80038A302 /* Extension */,
 				7457A438265D715500BA5208 /* Model */,
 				74575DBE265D256100A898CD /* View */,
 				7457A437265D710700BA5208 /* Controllers */,
@@ -135,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				741A7024265D0B590000D45C /* MainTabBarController.swift */,
-				741A701E265D0ACB0000D45C /* MostViewedNewsViewController.swift */,
-				741A701B265D0A670000D45C /* MostEmailedNewsViewController.swift */,
+				741A701E265D0ACB0000D45C /* MostViewedViewController.swift */,
+				741A701B265D0A670000D45C /* MostEmailedViewController.swift */,
 				741A7021265D0B070000D45C /* MostSharedNewsViewController.swift */,
 				74575DC6265D508B00A898CD /* FavoritesNewsViewController.swift */,
 				746F3142265D1D9900062540 /* DetailViewController.swift */,
@@ -160,6 +163,14 @@
 				746F3138265D128600062540 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		747AF4B3265EC2F80038A302 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				747AF4B4265EC31C0038A302 /* UIImageView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		74F30E8C265D810D003B89C0 /* Networking */ = {
@@ -315,13 +326,14 @@
 				746F3140265D1A8800062540 /* ScreenFactory.swift in Sources */,
 				741A6FFE265D00030000D45C /* AppDelegate.swift in Sources */,
 				74575DC7265D508B00A898CD /* FavoritesNewsViewController.swift in Sources */,
-				741A701F265D0ACB0000D45C /* MostViewedNewsViewController.swift in Sources */,
+				741A701F265D0ACB0000D45C /* MostViewedViewController.swift in Sources */,
 				74F30E92265D931E003B89C0 /* NewsResponse.swift in Sources */,
+				747AF4B5265EC31C0038A302 /* UIImageView.swift in Sources */,
 				741A7000265D00030000D45C /* SceneDelegate.swift in Sources */,
 				741A7008265D00030000D45C /* VRGSoftTestApp.xcdatamodeld in Sources */,
 				746F3143265D1D9900062540 /* DetailViewController.swift in Sources */,
 				74F30E8E265D812C003B89C0 /* NetworkManager.swift in Sources */,
-				741A701C265D0A670000D45C /* MostEmailedNewsViewController.swift in Sources */,
+				741A701C265D0A670000D45C /* MostEmailedViewController.swift in Sources */,
 				746F3139265D128600062540 /* AppCoordinator.swift in Sources */,
 				7457A435265D5E5200BA5208 /* FavoriteButton.swift in Sources */,
 			);

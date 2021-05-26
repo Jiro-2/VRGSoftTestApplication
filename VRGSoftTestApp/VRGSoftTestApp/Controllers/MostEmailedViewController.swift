@@ -1,16 +1,23 @@
 import UIKit
 
-final class MostViewedNewsViewController: UIViewController {
 
-     var coordinator: AppCoordinator?
-     private let networkManager: NetworkManagerProtocol
-     private var viewedArticles = [Article]()
+protocol MostEmailedViewControllerDelegate: class {
     
+    func viewController(_ mostEmailedViewController: MostEmailedViewController, didSelect article: Article)
+}
 
+
+final class MostEmailedViewController: UIViewController {
+    
+    var coordinator: AppCoordinator?
+    var delegate: MostEmailedViewControllerDelegate?
+    private let networkManager: NetworkManagerProtocol
+    private var emailedArticles = [Article]()
+    
     //MARK: - Subview
     
     private lazy var tableView: UITableView = {
-      
+        
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: "news_cell_id")
@@ -27,8 +34,10 @@ final class MostViewedNewsViewController: UIViewController {
     init(networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
+        tabBarItem.image = UIImage(systemName: "envelope.fill")
+        tabBarItem.title = "Most Emailed"
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,22 +48,17 @@ final class MostViewedNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        networkManager.getNews(in: .viewed, over: .month) { response in
+        
+        networkManager.getNews(in: .emailed, over: .month) { response in
             
             guard let articles = response?.results else { return }
-            self.viewedArticles = articles
-                        
-            DispatchQueue.main.async {
-                
-                self.tableView.reloadData()
-            }
+            self.emailedArticles = articles
+            self.tableView.reloadData()
         }
         
-        view.backgroundColor = .green
+        view.backgroundColor = .blue
         setupLayout()
     }
-    
     
     //MARK: - Methods -
     
@@ -74,31 +78,37 @@ final class MostViewedNewsViewController: UIViewController {
 //MARK: - Extension -
 
 
-extension MostViewedNewsViewController: UITableViewDataSource {
+extension MostEmailedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewedArticles.count
+        emailedArticles.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        NewsTableViewCell()
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "news_cell_id") as? NewsTableViewCell
         
-        guard let newsCell = cell as? NewsTableViewCell else { return }
-        newsCell.titleLabel.text = viewedArticles[indexPath.row].title
-        newsCell.summaryArticleLabel.text = viewedArticles[indexPath.row].abstract
+        let imageURL = emailedArticles[indexPath.row].media.first?.metadata.first?.url
+        cell?.imageView?.setImage(withURL: imageURL)
+        
+        cell?.titleLabel.text = emailedArticles[indexPath.row].title
+        cell?.summaryArticleLabel.text = emailedArticles[indexPath.row].abstract
+        
+        return cell ?? UITableViewCell()
+        
     }
 }
 
 
-extension MostViewedNewsViewController: UITableViewDelegate {
+extension MostEmailedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
+        
         coordinator?.showDetails()
+        let lastViewController = coordinator?.navigationController?.viewControllers.last
+        let detailViewController = lastViewController as? MostEmailedViewControllerDelegate
+        delegate = detailViewController
+        delegate?.viewController(self, didSelect: emailedArticles[indexPath.row])
     }
 }

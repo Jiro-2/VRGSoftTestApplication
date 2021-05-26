@@ -1,15 +1,16 @@
 import UIKit
+import SDWebImage
 
 final class NewsTableViewCell: UITableViewCell {
     
     
     //MARK: - Subviews -
     
-    var favoriteButton = FavoriteButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    var favoriteButton = FavoriteButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
     
     
     lazy var titleLabel: UILabel = {
-       
+
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 15.0, weight: .semibold)
@@ -17,10 +18,10 @@ final class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         return label
     }()
-    
-    
+
+
     lazy var summaryArticleLabel: UILabel = {
-       
+
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13.0, weight: .medium)
@@ -29,7 +30,8 @@ final class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         return label
     }()
-    
+
+
     
     //MARK: - Init -
     
@@ -46,16 +48,27 @@ final class NewsTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: - Methods -
     
+    //MARK: - Methods -
+
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        imageView?.frame = CGRect(x: 0, y: 0, width: bounds.width * 0.25, height: bounds.height)
+    }
+    
+    
+
+        
     private func setupLayout() {
         
         NSLayoutConstraint.activate([
         
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 50.0),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0),
+            titleLabel.leadingAnchor.constraint(equalTo: imageView!.trailingAnchor, constant: 10.0),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20.0),
-            
+
             summaryArticleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10.0),
             summaryArticleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             summaryArticleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),

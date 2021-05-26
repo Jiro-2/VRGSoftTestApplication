@@ -25,7 +25,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMostEmailedViewController() -> UIViewController {
         
-        let vc = MostEmailedNewsViewController(networkManager: networkManager)
+        let vc = MostEmailedViewController(networkManager: networkManager)
         vc.coordinator = coordinator
         return vc
     }
@@ -33,7 +33,7 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMostViewedViewController() -> UIViewController {
         
-        let vc = MostViewedNewsViewController(networkManager: networkManager)
+        let vc = MostViewedViewController(networkManager: networkManager)
         vc.coordinator = coordinator
         return vc
     }
