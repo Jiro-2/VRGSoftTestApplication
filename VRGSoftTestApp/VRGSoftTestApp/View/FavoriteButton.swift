@@ -6,17 +6,22 @@ final class FavoriteButton: UIButton {
     //MARK: - Properties -
     
     var didTapButtonBlock: (() -> ())?
-    var isFavorite: Bool
+
+    private let selectedImage = UIImage(systemName: "star.fill")
+    private let unSelectedImage = UIImage(systemName: "star")
     
     
     //MARK: - Init -
     
-    init(isFavorite: Bool = false, frame: CGRect) {
-        self.isFavorite = isFavorite
+    init(isSelected: Bool = true, frame: CGRect) {
         super.init(frame: frame)
+        self.isSelected = Bool.random()
         sizeToFit()
         setAction()
-        setImage()
+        
+        self.setBackgroundImage(selectedImage, for: .selected)
+        self.setBackgroundImage(unSelectedImage?.withTintColor(.gray, renderingMode: .alwaysOriginal), for: .normal)
+    
     }
     
     
@@ -31,36 +36,21 @@ final class FavoriteButton: UIButton {
     
     private func setAction() {
         
-        self.addAction(UIAction(handler: { _ in
-                        
-            if self.isFavorite {
+        self.addAction(UIAction(handler: { [weak self] _ in
+            
+            guard let self = self else { return }
+            
+            if self.isSelected {
                 
-                self.isFavorite = false
-                
+                self.isSelected = false
+
             } else {
                 
-                self.isFavorite = true
+                self.isSelected = true
             }
             
-            self.setImage()
             self.didTapButtonBlock?()
             
         }), for: .touchUpInside)
-    }
-    
-    
-    
-    private func setImage() {
-        
-        if isFavorite {
-            
-            setImage(UIImage(systemName: "star.fill"), for: .normal)
-            tintColor = .blue
-        
-        } else {
-            
-            setImage(UIImage(systemName: "star"), for: .normal)
-            tintColor = .gray
-        }
     }
 }
