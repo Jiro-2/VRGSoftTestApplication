@@ -3,7 +3,7 @@ import SDWebImage
 
 protocol MostViewedViewControllerDelegate: class {
     
-    func viewController(_ mostViewedViewController: MostViewedViewController, didSelect article: Article)
+    func viewController(_ mostViewedViewController: MostViewedViewController, didSelect article: ArticleResponse)
 }
 
 
@@ -12,8 +12,10 @@ final class MostViewedViewController: UIViewController {
     var coordinator: AppCoordinator?
     var delegate: MostViewedViewControllerDelegate?
     private let networkManager: NetworkManagerProtocol
-    private var viewedArticles = [Article]()
-    
+    private let databaseManager: DatabaseManageable
+
+    private var viewedArticles = [ArticleResponse]()
+    private var favoritesArticles = [Article]()
     
     //MARK: - Subview
     
@@ -30,13 +32,17 @@ final class MostViewedViewController: UIViewController {
     }()
     
     
+    
     //MARK: - Init -
     
-    init(networkManager: NetworkManagerProtocol) {
+    init(networkManager: NetworkManagerProtocol, databaseManager: DatabaseManageable) {
         self.networkManager = networkManager
+        self.databaseManager = databaseManager
+        
         super.init(nibName: nil, bundle: nil)
         self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -47,6 +53,7 @@ final class MostViewedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        downloadFavorites()
         
         networkManager.getNews(in: .viewed, over: .month) { response in
             
@@ -55,12 +62,24 @@ final class MostViewedViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        view.backgroundColor = .green
+        view.backgroundColor = .white
         setupLayout()
     }
     
     
     //MARK: - Methods -
+    
+    
+  private func downloadFavorites() {
+        
+        databaseManager.fetchObjects(Article.self) { objects in
+            
+            guard let articles = objects as? [Article] else { return }
+            self.favoritesArticles = articles
+        }
+    }
+    
+    
     
     private func setupLayout() {
         
@@ -81,16 +100,17 @@ final class MostViewedViewController: UIViewController {
 extension MostViewedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         viewedArticles.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "news_cell_id") as? NewsTableViewCell
-        
         let imageURL = viewedArticles[indexPath.row].media.first?.metadata.first?.url
-        cell?.imageView?.setImage(withURL: imageURL)
         
+        cell?.imageView?.setImage(withURL: imageURL)
         cell?.titleLabel.text = viewedArticles[indexPath.row].title
         cell?.summaryArticleLabel.text = viewedArticles[indexPath.row].abstract
         

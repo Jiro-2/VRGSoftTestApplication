@@ -6,7 +6,7 @@ struct NewsResponse: Decodable {
     let status: String
     let copyright: String
     let numberResults: Int
-    let results: [Article]
+    let results: [ArticleResponse]
     
     private enum CodingKeys: String, CodingKey {
         
@@ -17,29 +17,27 @@ struct NewsResponse: Decodable {
 
 
 
-struct Article: Decodable {
+struct ArticleResponse: Decodable {
     
     let id: Int
     let title: String
     let abstract: String
     let url: String
-    let publishedDate: String
-    let source: String
     let author: String
-    let media: [Media]
+    let media: [MediaResponse]
     
     private enum CodingKeys: String, CodingKey {
         
-        case id, title, abstract, url, publishedDate = "published_date", source, author = "byline", media
+        case id, title, abstract, url, author = "byline", media
     }
 }
 
 
 
-struct Media: Decodable {
+struct MediaResponse: Decodable {
     
     let type: String
-    let metadata: [ImageData]
+    let metadata: [ImageDataResponse]
     
     private enum CodingKeys: String, CodingKey {
         case type, metadata = "media-metadata"
@@ -48,7 +46,7 @@ struct Media: Decodable {
 
 
 
-struct ImageData: Decodable {
+struct ImageDataResponse: Decodable {
     
     let url: String
     let height: Int

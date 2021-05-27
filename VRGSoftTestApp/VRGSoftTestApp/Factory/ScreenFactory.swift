@@ -7,7 +7,7 @@ protocol ScreenFactoryProtocol {
     func makeMostSharedViewController() -> UIViewController
     func makeDetailViewController() -> UIViewController
     func makeMainTabBarController() -> UIViewController
-    func makeFavoritesNewsViewController() -> UIViewController
+    func makeFavoriteViewController() -> UIViewController
 }
 
 
@@ -16,10 +16,11 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     var coordinator: AppCoordinator?
     let networkManager = NetworkManager()
+    let databaseManager = NewsDBManager()
     
     
     func makeDetailViewController() -> UIViewController {
-        DetailViewController()
+        DetailViewController(databaseManager: databaseManager)
     }
     
     
@@ -33,7 +34,8 @@ final class ScreenFactory: ScreenFactoryProtocol {
     
     func makeMostViewedViewController() -> UIViewController {
         
-        let vc = MostViewedViewController(networkManager: networkManager)
+        let vc = MostViewedViewController(networkManager: networkManager,
+                                          databaseManager: databaseManager)
         vc.coordinator = coordinator
         return vc
     }
@@ -47,20 +49,22 @@ final class ScreenFactory: ScreenFactoryProtocol {
     }
     
     
-    func makeFavoritesNewsViewController() -> UIViewController {
-        FavoritesNewsViewController()
+    func makeFavoriteViewController() -> UIViewController {
+        
+        let vc = FavoriteViewController(databaseManager: databaseManager)
+        vc.coordinator = coordinator
+        return vc
     }
     
     
     func makeMainTabBarController() -> UIViewController {
+                
+        let tabBarController = UITabBarController()
         
-        let networkManager = NetworkManager()
-        
-        let tabBarController = MainTabBarController(networkManager: networkManager)
         tabBarController.viewControllers = [makeMostViewedViewController(),
                                             makeMostSharedViewController(),
                                             makeMostEmailedViewController(),
-                                            makeFavoritesNewsViewController()]
+                                            makeFavoriteViewController()]
         return tabBarController
     }
 }

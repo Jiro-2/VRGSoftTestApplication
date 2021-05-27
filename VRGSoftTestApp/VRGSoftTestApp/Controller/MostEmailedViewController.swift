@@ -3,7 +3,7 @@ import UIKit
 
 protocol MostEmailedViewControllerDelegate: class {
     
-    func viewController(_ mostEmailedViewController: MostEmailedViewController, didSelect article: Article)
+    func viewController(_ mostEmailedViewController: MostEmailedViewController, didSelect article: ArticleResponse)
 }
 
 
@@ -12,14 +12,14 @@ final class MostEmailedViewController: UIViewController {
     var coordinator: AppCoordinator?
     var delegate: MostEmailedViewControllerDelegate?
     private let networkManager: NetworkManagerProtocol
-    private var emailedArticles = [Article]()
+    private var emailedArticles = [ArticleResponse]()
     
     //MARK: - Subview
     
     private lazy var tableView: UITableView = {
         
         let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
+        table.frame = view.frame
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: "news_cell_id")
         table.rowHeight = 100
         table.delegate = self
@@ -56,21 +56,7 @@ final class MostEmailedViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        view.backgroundColor = .blue
-        setupLayout()
-    }
-    
-    //MARK: - Methods -
-    
-    private func setupLayout() {
-        
-        NSLayoutConstraint.activate([
-            
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        view.backgroundColor = .white
     }
 }
 

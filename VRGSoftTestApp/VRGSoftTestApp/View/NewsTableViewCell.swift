@@ -6,9 +6,6 @@ final class NewsTableViewCell: UITableViewCell {
     
     //MARK: - Subviews -
     
-    var favoriteButton = FavoriteButton(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-    
-    
     lazy var titleLabel: UILabel = {
 
         let label = UILabel()
@@ -38,7 +35,7 @@ final class NewsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.accessoryView = favoriteButton
+        accessoryType = .disclosureIndicator
         setupLayout()
     }
     

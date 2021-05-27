@@ -3,7 +3,7 @@ import UIKit
 
 protocol MostSharedViewControllerDelegate: class {
     
-    func viewController(_ viewController: MostSharedNewsViewController, didSelect article: Article)
+    func viewController(_ viewController: MostSharedNewsViewController, didSelect article: ArticleResponse)
 }
 
 
@@ -14,7 +14,7 @@ final class MostSharedNewsViewController: UIViewController {
     var coordinator: AppCoordinator?
     var delegate: MostSharedViewControllerDelegate?
     private let networkManager: NetworkManagerProtocol
-    private var sharedArticles = [Article]()
+    private var sharedArticles = [ArticleResponse]()
     
     
     //MARK: - subview
@@ -22,7 +22,7 @@ final class MostSharedNewsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         
         let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
+        table.frame = view.frame
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: "news_cell_id")
         table.rowHeight = 100
         table.delegate = self
@@ -65,22 +65,7 @@ final class MostSharedNewsViewController: UIViewController {
             }
         }
         
-        view.backgroundColor = .yellow
-        setupLayout()
-    }
-    
-    
-    //MARK: - Methods -
-    
-    private func setupLayout() {
-        
-        NSLayoutConstraint.activate([
-            
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        view.backgroundColor = .white
     }
 }
 

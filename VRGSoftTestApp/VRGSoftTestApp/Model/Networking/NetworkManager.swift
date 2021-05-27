@@ -31,7 +31,7 @@ final class NetworkManager: NetworkManagerProtocol {
         request.responseDecodable(of: NewsResponse.self) { response in
             
             if let error = response.error {
-                assertionFailure("ERROR: \(error.localizedDescription)")
+                print("ERROR: \(error.localizedDescription)")
             }
             
             completion(response.value)

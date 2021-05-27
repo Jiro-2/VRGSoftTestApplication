@@ -3,25 +3,19 @@ import UIKit
 final class FavoriteButton: UIButton {
     
     
-    //MARK: - Properties -
+    var didTapBlock: (() -> ())?
     
-    var didTapButtonBlock: (() -> ())?
-
-    private let selectedImage = UIImage(systemName: "star.fill")
-    private let unSelectedImage = UIImage(systemName: "star")
+    private let selectImage = UIImage(systemName: "square.and.arrow.down.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+    private let unSelectImage = UIImage(systemName: "multiply.circle.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
     
     
-    //MARK: - Init -
+    //MARK: -Init -
     
-    init(isSelected: Bool = true, frame: CGRect) {
+    init(isSelected: Bool = false, frame: CGRect) {
         super.init(frame: frame)
-        self.isSelected = Bool.random()
-        sizeToFit()
-        setAction()
-        
-        self.setBackgroundImage(selectedImage, for: .selected)
-        self.setBackgroundImage(unSelectedImage?.withTintColor(.gray, renderingMode: .alwaysOriginal), for: .normal)
-    
+        self.isSelected = isSelected
+        setupStyle()
+        setupAction()
     }
     
     
@@ -30,27 +24,43 @@ final class FavoriteButton: UIButton {
     }
     
     
-    
     //MARK: - Methods -
     
-    
-    private func setAction() {
+    private func setupStyle() {
         
-        self.addAction(UIAction(handler: { [weak self] _ in
-            
-            guard let self = self else { return }
-            
-            if self.isSelected {
-                
-                self.isSelected = false
+        setImage(selectImage, for: .normal)
+        setImage(unSelectImage, for: .selected)
+        
+        setTitle("Add To Favorites", for: .normal)
+        setTitle("Remove From Favorites", for: .selected)
+        
+        setTitleColor(.white, for: .normal)
+        setTitleColor(.white, for: .selected)
+        
+        titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        layer.cornerRadius = 10.0
+        
+        if isSelected {
 
-            } else {
-                
-                self.isSelected = true
-            }
-            
-            self.didTapButtonBlock?()
-            
+            backgroundColor = .systemRed
+
+        } else {
+
+
+            self.backgroundColor = .systemBlue
+
+        }
+        
+    }
+    
+    
+    
+    private func setupAction() {
+        
+        addAction(UIAction(handler: { _ in
+        
+                self.didTapBlock?()
         }), for: .touchUpInside)
     }
 }
+
