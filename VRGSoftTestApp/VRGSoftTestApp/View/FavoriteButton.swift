@@ -28,29 +28,24 @@ final class FavoriteButton: UIButton {
     
     private func setupStyle() {
         
-        setImage(selectImage, for: .normal)
-        setImage(unSelectImage, for: .selected)
-        
-        setTitle("Add To Favorites", for: .normal)
-        setTitle("Remove From Favorites", for: .selected)
         
         setTitleColor(.white, for: .normal)
-        setTitleColor(.white, for: .selected)
         
         titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         layer.cornerRadius = 10.0
         
         if isSelected {
 
+            setTitle("Remove From Favorites", for: .normal)
             backgroundColor = .systemRed
+            setImage(selectImage, for: .normal)
 
         } else {
 
-
+            setTitle("Add To Favorites", for: .normal)
+            setImage(unSelectImage, for: .selected)
             self.backgroundColor = .systemBlue
-
         }
-        
     }
     
     

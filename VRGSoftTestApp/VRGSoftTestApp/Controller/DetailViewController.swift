@@ -131,8 +131,6 @@ final class DetailViewController: UIViewController {
                 if isFavoriteArticle {
                     
                     self.removeFromFavoritesArticle()
-                  //  button.isSelected = true
-                    button.backgroundColor = .systemRed
                     self.navigationController?.popViewController(animated: true)
                 }
                 
@@ -140,8 +138,6 @@ final class DetailViewController: UIViewController {
                 if !isFavoriteArticle {
                     
                     self.addToFavoriteArticle()
-                   // button.isSelected = false
-                    button.backgroundColor = .systemBlue
                     self.navigationController?.popViewController(animated: true)
                 }
             }
@@ -185,6 +181,7 @@ final class DetailViewController: UIViewController {
     
     
     private func setupLayout() {
+        
         
         NSLayoutConstraint.activate([
             
